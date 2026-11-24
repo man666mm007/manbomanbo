@@ -2,7 +2,7 @@
 
 纯本地运行、零隐私上传、一键导出高清无水印矢量 A4 PDF 的中文简历生成器。
 
-- 🌐 **免费在线使用**：https://<你的GitHub用户名>.github.io/jianmo-resume/
+- 🌐 **免费在线使用**：https://man666mm007.github.io/jianmo-resume/
 - ⚡ **爱发电创作者主页 / 获取离线永久单文件版**：https://ifdian.net/a/hachimionabeiluduo
 
 ## 核心特性
