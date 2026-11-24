@@ -1,0 +1,475 @@
+/* ==========================================================================
+   简墨简历 - 出版级 A4 纸张与 5 套简历模板样式 + 高清打印样式
+   ========================================================================== */
+
+.resume-paper {
+  --accent: #1e3a8a;
+  --font-size: 13.5px;
+  --line-height: 1.55;
+  --page-pad: 16mm;
+  --font-family: 'PingFang SC', 'Microsoft YaHei', 'Hiragino Sans GB', 'Noto Sans SC', system-ui, sans-serif;
+
+  width: 210mm;
+  min-height: 297mm;
+  box-sizing: border-box;
+  padding: var(--page-pad);
+  background: #ffffff;
+  color: #1f2937;
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.resume-paper * {
+  box-sizing: border-box;
+}
+
+.resume-paper p,
+.resume-paper h1,
+.resume-paper h2,
+.resume-paper ul {
+  margin: 0;
+  padding: 0;
+}
+
+.resume-paper strong {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* 通用基础元素 */
+.resume-name {
+  font-size: 2em;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  color: #0f172a;
+}
+
+.resume-title {
+  margin-top: 4px;
+  font-size: 1.08em;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.contact-list-inline {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  margin-top: 8px;
+  font-size: 0.92em;
+  color: #475569;
+}
+
+.contact-list-inline li {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.c-icon {
+  color: var(--accent);
+  font-size: 0.95em;
+  opacity: 0.9;
+}
+
+.resume-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.header-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.avatar-wrap {
+  flex-shrink: 0;
+  overflow: hidden;
+  border: 2px solid color-mix(in srgb, var(--accent) 25%, #e2e8f0);
+  background: #f8fafc;
+}
+
+.avatar-header {
+  width: 24mm;
+  height: 30mm;
+  border-radius: 6px;
+}
+
+.avatar-sidebar {
+  width: 26mm;
+  height: 26mm;
+  border-radius: 50%;
+  margin: 0 auto 12px;
+  border-width: 2px;
+}
+
+.avatar-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.resume-section {
+  margin-top: 13px;
+}
+
+.section-header {
+  font-size: 1.08em;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 7px;
+  break-after: avoid;
+  page-break-after: avoid;
+}
+
+.resume-summary {
+  color: #334155;
+  text-align: justify;
+}
+
+.resume-item {
+  margin-bottom: 9px;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.resume-item:last-child {
+  margin-bottom: 0;
+}
+
+.item-head,
+.item-sub {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.item-title {
+  font-weight: 700;
+  font-size: 1.03em;
+  color: #0f172a;
+}
+
+.item-date {
+  font-size: 0.9em;
+  font-weight: 600;
+  color: #475569;
+  white-space: nowrap;
+}
+
+.item-sub {
+  margin-top: 1px;
+  font-size: 0.95em;
+  color: #475569;
+}
+
+.item-subtitle {
+  font-weight: 500;
+  color: #334155;
+}
+
+.item-location {
+  font-size: 0.9em;
+  color: #64748b;
+  white-space: nowrap;
+}
+
+.item-bullets {
+  margin-top: 4px;
+  padding-left: 1.15em;
+  list-style: disc;
+  color: #334155;
+}
+
+.item-bullets li {
+  margin-bottom: 2.5px;
+  text-align: justify;
+}
+
+.item-bullets li:last-child {
+  margin-bottom: 0;
+}
+
+.item-bullets li::marker {
+  color: var(--accent);
+}
+
+/* ==========================================================================
+   模板 1：极简大厂风 (tech-minimal)
+   ========================================================================== */
+.tpl-tech-minimal .resume-header {
+  padding-bottom: 11px;
+  border-bottom: 2px solid var(--accent);
+}
+
+.tpl-tech-minimal .section-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-left: 8px;
+  border-left: 3.5px solid var(--accent);
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 3px;
+  color: #0f172a;
+}
+
+/* ==========================================================================
+   模板 2：经典商务风 (classic-exec)
+   ========================================================================== */
+.tpl-classic-exec .resume-header.no-avatar {
+  text-align: center;
+  justify-content: center;
+}
+
+.tpl-classic-exec .resume-header.no-avatar .contact-list-inline {
+  justify-content: center;
+}
+
+.tpl-classic-exec .resume-header {
+  padding-bottom: 12px;
+  border-bottom: 3px double var(--accent);
+}
+
+.tpl-classic-exec .section-header {
+  letter-spacing: 0.08em;
+  border-bottom: 1.5px solid var(--accent);
+  padding-bottom: 3px;
+  margin-bottom: 8px;
+}
+
+/* ==========================================================================
+   模板 3：现代双栏风 (modern-sidebar)
+   ========================================================================== */
+.tpl-modern-sidebar {
+  padding: 0;
+}
+
+.tpl-modern-sidebar .sidebar-shell {
+  display: grid;
+  grid-template-columns: 64mm 1fr;
+  min-height: 297mm;
+}
+
+.tpl-modern-sidebar .sidebar-col {
+  background: color-mix(in srgb, var(--accent) 7%, #f8fafc);
+  border-right: 1px solid color-mix(in srgb, var(--accent) 16%, #e2e8f0);
+  padding: var(--page-pad) 10mm;
+}
+
+.tpl-modern-sidebar .main-col {
+  padding: var(--page-pad) var(--page-pad) var(--page-pad) 12mm;
+}
+
+.tpl-modern-sidebar .sidebar-identity {
+  text-align: center;
+  padding-bottom: 12px;
+  border-bottom: 1.5px solid color-mix(in srgb, var(--accent) 25%, #cbd5e1);
+}
+
+.tpl-modern-sidebar .sidebar-identity .resume-name {
+  font-size: 1.65em;
+}
+
+.tpl-modern-sidebar .sidebar-identity .resume-title {
+  font-size: 0.96em;
+  margin-top: 5px;
+}
+
+.tpl-modern-sidebar .sidebar-contacts {
+  margin-top: 13px;
+}
+
+.tpl-modern-sidebar .contact-list-vertical {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 0.9em;
+  color: #334155;
+  word-break: break-all;
+}
+
+.tpl-modern-sidebar .contact-list-vertical li {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.tpl-modern-sidebar .sidebar-col .section-header {
+  font-size: 1em;
+  padding-bottom: 3px;
+  border-bottom: 1.5px solid var(--accent);
+  margin-bottom: 6px;
+}
+
+.tpl-modern-sidebar .sidebar-col .item-head,
+.tpl-modern-sidebar .sidebar-col .item-sub {
+  flex-direction: column;
+  gap: 1px;
+}
+
+.tpl-modern-sidebar .main-col .resume-section:first-child {
+  margin-top: 0;
+}
+
+.tpl-modern-sidebar .main-col .section-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 4px;
+}
+
+.tpl-modern-sidebar .main-col .section-header::before {
+  content: '';
+  width: 6px;
+  height: 1.05em;
+  background: var(--accent);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   模板 4：学术科研风 (academic-cv)
+   ========================================================================== */
+.tpl-academic-cv {
+  color: #111827;
+}
+
+.tpl-academic-cv .resume-header {
+  padding-bottom: 10px;
+  border-bottom: 1.5px solid #111827;
+}
+
+.tpl-academic-cv .resume-title {
+  color: #374151;
+  font-weight: 500;
+}
+
+.tpl-academic-cv .c-icon {
+  color: #374151;
+}
+
+.tpl-academic-cv .section-header {
+  color: #111827;
+  font-size: 1.06em;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid #374151;
+  padding-bottom: 2px;
+}
+
+.tpl-academic-cv .item-bullets li::marker {
+  color: #374151;
+}
+
+/* ==========================================================================
+   模板 5：清新应届风 (fresh-grad)
+   ========================================================================== */
+.tpl-fresh-grad .resume-header {
+  background: color-mix(in srgb, var(--accent) 7%, #f8fafc);
+  border: 1px solid color-mix(in srgb, var(--accent) 18%, #e2e8f0);
+  border-left: 5px solid var(--accent);
+  border-radius: 8px;
+  padding: 12px 15px;
+  margin-bottom: 14px;
+}
+
+.tpl-fresh-grad .section-header {
+  display: inline-flex;
+  align-items: center;
+  background: color-mix(in srgb, var(--accent) 10%, #ffffff);
+  color: var(--accent);
+  padding: 3px 12px;
+  border-radius: 999px;
+  font-size: 0.98em;
+  margin-bottom: 8px;
+}
+
+.tpl-fresh-grad .resume-section {
+  position: relative;
+}
+
+.tpl-fresh-grad .section-body {
+  padding-left: 4px;
+}
+
+/* ==========================================================================
+   高清矢量 A4 打印规则（完全移除编辑器与背景装饰，保持多页自然分页）
+   ========================================================================== */
+@page {
+  size: A4;
+  margin: 0;
+}
+
+@media print {
+  html,
+  body {
+    width: 210mm !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    background: #ffffff !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .topbar,
+  .editor-pane,
+  .preview-toolbar,
+  .page-break-guide,
+  .modal-backdrop,
+  .toast-container,
+  .no-print {
+    display: none !important;
+  }
+
+  .workspace,
+  .preview-pane,
+  .preview-scroll,
+  .paper-stage {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    background: transparent !important;
+    border: none !important;
+    transform: none !important;
+  }
+
+  .paper-frame {
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    transform: none !important;
+    width: 210mm !important;
+  }
+
+  .resume-paper {
+    width: 210mm !important;
+    min-height: 297mm !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+  }
+
+  .tpl-modern-sidebar .sidebar-shell {
+    min-height: 297mm;
+  }
+}

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>简墨简历 - 免费无水印高清 A4 简历生成器 | 纯本地隐私安全</title>
+  <meta name="description" content="简墨简历是一款纯前端本地运行的中文简历制作工具，提供 5 套大厂/商务/学术/应届生专业模板，实时所见即所得，一键导出可选中文字的高清无水印 A4 PDF。" />
+  <meta name="keywords" content="免费简历制作,无水印简历,程序员简历模板,A4 PDF简历,在线简历生成器,应届生简历" />
+  <meta property="og:title" content="简墨简历 - 免费无水印高清 A4 简历生成器" />
+  <meta property="og:description" content="纯本地运行不上传服务器，5 套精致中文排版模板，一键导出清晰无水印 A4 矢量 PDF。" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231e3a8a'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-weight='bold' font-size='32'%3E墨%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="app.css" />
+  <link rel="stylesheet" href="templates.css" />
+</head>
+<body>
+  <header class="topbar no-print">
+    <div class="brand">
+      <div class="brand-logo" aria-hidden="true">墨</div>
+      <div class="brand-text">
+        <span class="brand-name">简墨简历</span>
+        <span class="brand-badge" id="brand-badge">纯本地运行 · 无水印免费导出</span>
+      </div>
+    </div>
+
+    <div class="topbar-controls">
+      <div class="ctrl-group">
+        <span class="ctrl-label">模板</span>
+        <select id="ctrl-template" class="ui-select" aria-label="选择简历模板"></select>
+      </div>
+
+      <div class="ctrl-group">
+        <span class="ctrl-label">主题色</span>
+        <div class="color-swatches" id="color-swatches"></div>
+        <input type="color" id="ctrl-color-picker" class="color-picker-input" title="自定义主题色" aria-label="自定义主题色" />
+      </div>
+
+      <div class="ctrl-group">
+        <span class="ctrl-label">字体</span>
+        <select id="ctrl-font" class="ui-select" aria-label="选择字体"></select>
+      </div>
+
+      <div class="ctrl-group">
+        <span class="ctrl-label">字号</span>
+        <select id="ctrl-fontsize" class="ui-select" aria-label="选择字号">
+          <option value="12">紧凑 (12px)</option>
+          <option value="13">偏小 (13px)</option>
+          <option value="13.5">标准 (13.5px)</option>
+          <option value="14.5">舒适 (14.5px)</option>
+          <option value="15.5">大字 (15.5px)</option>
+        </select>
+      </div>
+
+      <div class="ctrl-group">
+        <span class="ctrl-label">行距</span>
+        <select id="ctrl-lineheight" class="ui-select" aria-label="选择行距">
+          <option value="1.35">紧凑 (1.35)</option>
+          <option value="1.45">适中 (1.45)</option>
+          <option value="1.55">标准 (1.55)</option>
+          <option value="1.7">宽松 (1.70)</option>
+        </select>
+      </div>
+
+      <div class="ctrl-group">
+        <span class="ctrl-label">边距</span>
+        <select id="ctrl-padding" class="ui-select" aria-label="选择页边距">
+          <option value="12">窄边距 (12mm)</option>
+          <option value="14">紧凑 (14mm)</option>
+          <option value="16">标准 (16mm)</option>
+          <option value="19">宽裕 (19mm)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="topbar-actions">
+      <select id="ctrl-preset" class="ui-select" aria-label="切换示例简历"></select>
+      <button type="button" id="btn-mobile-switch" class="btn mobile-switch-btn">预览简历</button>
+      <button type="button" id="btn-import-json" class="btn" title="从 JSON 文件恢复数据">导入</button>
+      <input type="file" id="file-import-json" accept="application/json,.json" class="hidden-file-input" />
+      <button type="button" id="btn-export-json" class="btn" title="下载 JSON 备份">备份</button>
+      <button type="button" id="btn-reset" class="btn" title="恢复为初始示例">重置</button>
+      <button type="button" id="btn-open-support" class="btn btn-support">赞赏 / 离线版</button>
+      <button type="button" id="btn-export-pdf" class="btn btn-primary">导出高清无水印 PDF</button>
+    </div>
+  </header>
+
+  <main class="workspace" id="workspace">
+    <aside class="editor-pane no-print">
+      <div class="editor-scroll">
+        <div class="editor-tip">
+          所有内容仅保存在你的浏览器本地，绝不上传服务器。支持用 <code>**关键数据**</code> 加粗突出成绩（例如 <code>**60 FPS**</code>）。
+        </div>
+        <div id="editor-content"></div>
+      </div>
+    </aside>
+
+    <section class="preview-pane">
+      <div class="preview-toolbar no-print">
+        <div class="preview-toolbar-left">
+          <button type="button" id="btn-toggle-editor" class="dark-btn">收起编辑面板</button>
+          <span class="save-status" id="save-status">已自动保存于本地</span>
+        </div>
+        <div class="preview-toolbar-right">
+          <span class="page-count-badge" id="page-count-badge">约 1 页 A4</span>
+          <label for="ctrl-zoom">画布缩放</label>
+          <select id="ctrl-zoom" class="ui-select" style="height:26px;font-size:12px;">
+            <option value="auto">自适应</option>
+            <option value="0.75">75%</option>
+            <option value="0.9">90%</option>
+            <option value="1">100%</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="preview-scroll" id="preview-scroll">
+        <div class="paper-stage" id="paper-stage"></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal-backdrop no-print" id="export-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title-text">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="modal-title-text">导出提示与支持作者</h3>
+        <button type="button" class="modal-close" id="btn-modal-close" aria-label="关闭">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="print-tip-box" id="modal-print-tip">
+          <strong>高清无水印 PDF 保存技巧：</strong>在弹出的打印窗口中，将「目标打印机」选为 <strong>另存为 PDF</strong>，纸张选 <strong>A4</strong>、边距选 <strong>无</strong>，并勾选 <strong>背景图形</strong>，即可得到文字可选中的矢量简历。
+        </div>
+        <div class="support-box" id="modal-payment-area"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-sm" id="btn-modal-dismiss">本次不再弹出</button>
+        <button type="button" class="btn btn-primary btn-sm" id="btn-modal-ok">我知道了</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container no-print" id="toast-container"></div>
+
+  <script src="config.js"></script>
+  <script src="presets.js"></script>
+  <script src="renderer.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
